@@ -20,19 +20,21 @@
 <script>
 import { ref } from 'vue';
 import { useNuxtApp } from '#app';
+import { useAuthStore } from '~/stores/auth';
 
 export default {
   setup() {
     const email = ref('');
     const password = ref('');
     const nuxtApp = useNuxtApp();
+    const authStore = useAuthStore();
 
     const register = async () => {
       try {
-        await nuxtApp.$appwrite.account.create('unique()', email.value, password.value);
+        await authStore.register(email.value, password.value);
         nuxtApp.$router.push({ path: '/dashboard' });
       } catch (error) {
-        console.error('Registration error:', error);
+        console.error('Error registering:', error);
       }
     };
 
