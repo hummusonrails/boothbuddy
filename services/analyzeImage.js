@@ -3,11 +3,23 @@ import { useBoothStore } from '~/stores/boothStore';
 import { Client, Functions } from 'appwrite';
 
 export const analyzeImageWithAI = async (base64Data, fileId, companyId, eventName) => {
+    if (!base64Data || !fileId || !companyId || !eventName) {
+      throw new Error('Invalid input parameters');
+    }
+    
     const nuxtApp = useNuxtApp();
     const config = useRuntimeConfig();
     const boothStore = useBoothStore();
-    const client = new Client().setEndpoint(config.public.appwriteEndpoint).setProject(config.public.appwriteProjectId);
-    const functions = new Functions(client);
+    let client = nuxtApp.$appwrite.client;
+    let functions = nuxtApp.$appwrite.functions;
+    if (!client) {
+      client = new Client().setEndpoint(config.public.appwriteEndpoint).setProject(config.public.appwriteProjectId);
+      nuxtApp.$appwrite.client = client;
+    }
+    if (!functions) {
+      functions = new Functions(client);
+      nuxtApp.$appwrite.functions = functions;
+    }
   
     const questionTemplate = process.env.VUE_APP_ANALYSIS_QUESTION;
     const question = questionTemplate.replace('%EVENT_NAME%', eventName);
