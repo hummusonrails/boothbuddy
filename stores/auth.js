@@ -8,29 +8,28 @@ export const useAuthStore = defineStore('auth', {
     session: null,
   }),
   actions: {
-    async initialize(nuxtApp, account) {
+    async initialize() {
+      const nuxtApp = useNuxtApp();
+      const account = nuxtApp.$appwriteAccount;
+
       try {
         const user = await account.get();
         if (user) {
-          this.setUser(user);
-        } else {
-          this.setUser(null);
+          this.user = user;
+          this.isAuthenticated = true;
         }
       } catch (error) {
         if (!(error instanceof AppwriteException && error.code === 401)) {
           console.error('Unexpected error during initialization:', error);
         }
-        await this.logout(); // Call the logout method to clean up user-related state
+        this.user = null;
+        this.isAuthenticated = false;
       }
     },
 
-    setUser(user) {
-      this.user = user;
-      this.isAuthenticated = !!user;
-    },
-
     async register(email, password) {
-      const account = this.getAccount();
+      const nuxtApp = useNuxtApp();
+      const account = nuxtApp.$appwriteAccount;
 
       try {
         const user = await account.create('unique()', email, password);
@@ -43,7 +42,8 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async login(email, password) {
-      const account = this.getAccount();
+      const nuxtApp = useNuxtApp();
+      const account = nuxtApp.$appwriteAccount;
 
       try {
         await account.createEmailSession(email, password);
@@ -60,7 +60,8 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async logout() {
-      const account = this.getAccount();
+      const nuxtApp = useNuxtApp();
+      const account = nuxtApp.$appwriteAccount;
 
       try {
         await account.deleteSession('current');
@@ -71,11 +72,6 @@ export const useAuthStore = defineStore('auth', {
         console.error('Logout error:', error);
         return false; 
       }
-    },
-
-    getAccount() {
-      const nuxtApp = useNuxtApp();
-      return nuxtApp.$appwriteAccount;
     },
   },
 });
