@@ -11,7 +11,7 @@ BoothBuddy is a progressive web application designed to streamline the process o
 
 ## Purpose
 
-The application aims to empower event participants to gain valuable insights into booth performance and vendor information. It provides a user-friendly interface for capturing booth images, analyzing them using AI, and storing the results in a database. The application also provides a dashboard for managing booth data and detailed company information.
+The application aims to empower event participants to gain valuable insights into booth performance, market positioning and vendor information. It provides a user-friendly interface for capturing booth images, analyzing them using AI, and storing the results in a database. The application also provides a dashboard for managing booth data and detailed company information.
 
 ## Tech Stack
 
