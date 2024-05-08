@@ -85,7 +85,7 @@ Refer to the official [Appwrite documentation](https://appwrite.io/docs) for det
 
 ### Code of Conduct
 
-We adhere to a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect project participants to adhere to. Please read the full text so that you can understand what actions will and will not be tolerated.
+We adhere to a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect project participants to respect. Please read the full text so that you can understand what actions will and will not be tolerated. Adherence to the Code of Conduct ensures all people are welcome to participate in contributing to BoothBuddy.
 
 ### License
 
