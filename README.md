@@ -7,7 +7,7 @@
 ![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-contributor%20covenant-ff69b4.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-BoothBuddy is a progressive web application designed to streamline the process of analyzing vendor booths at trade shows and events. Using a combination of OpenAI, Vue.js, TailwindCSS, and Appwrite, it provides a set of tools for booth analysis, including image capture, booth analysis using AI, and detailed reporting.
+BoothBuddy is a progressive web application (PWA) designed to streamline the process of analyzing vendor booths at trade shows and events. Using a combination of OpenAI, Vue.js, TailwindCSS, and Appwrite, it provides a set of tools for booth analysis, including image capture, booth analysis using AI, and detailed reporting.
 
 ## Purpose
 
