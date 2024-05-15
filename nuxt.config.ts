@@ -35,6 +35,7 @@ export default defineNuxtConfig({
       appWriteBoothBucketId: process.env.APPWRITE_BOOTH_BUCKET_ID,
       appWriteAiFunctionId: process.env.APPWRITE_AI_FUNCTION_ID,
       openaiApiKey: process.env.OPENAI_API_KEY,
+      analysisQuestion: process.env.VUE_APP_ANALYSIS_QUESTION,
     },
   },
 
