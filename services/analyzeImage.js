@@ -1,6 +1,5 @@
 import { useNuxtApp } from '#app';
 import { useBoothStore } from '~/stores/boothStore';
-import { Client, Functions } from 'appwrite';
 
 export const analyzeImageWithAI = async (base64Data, fileId, companyId, eventName) => {
   if (!base64Data || !fileId || !companyId || !eventName) {
@@ -10,18 +9,13 @@ export const analyzeImageWithAI = async (base64Data, fileId, companyId, eventNam
   const nuxtApp = useNuxtApp();
   const config = useRuntimeConfig();
   const boothStore = useBoothStore();
-  
-  let client = nuxtApp.$appwrite?.client;
-  let functions = nuxtApp.$appwrite?.functions;
 
-  if (!client) {
-    client = new Client().setEndpoint(config.public.appwriteEndpoint).setProject(config.public.appwriteProjectId);
-    nuxtApp.$appwrite.client = client;
-  }
+  const client = nuxtApp.$appwriteClient;
+  const functions = nuxtApp.$appwriteFunctions;
 
-  if (!functions) {
-    functions = new Functions(client);
-    nuxtApp.$appwrite.functions = functions;
+  if (!client || !functions) {
+    console.error('Appwrite client or functions not initialized');
+    return;
   }
 
   const questionTemplate = process.env.VUE_APP_ANALYSIS_QUESTION;
