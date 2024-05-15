@@ -19,6 +19,8 @@ export const analyzeImageWithAI = async (base64Data, fileId, companyId, eventNam
   }
 
   const questionTemplate = config.public.VUE_APP_ANALYSIS_QUESTION;
+  console.log('Question template:', questionTemplate);
+  console.log('Event name:', eventName);
   const question = questionTemplate.replace('%EVENT_NAME%', eventName);
 
   try {
